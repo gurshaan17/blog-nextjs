@@ -5,14 +5,16 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Clock, Search } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import Header from '@/components/ui/navbar'
 
 export default function BlogListing() {
-  const [blogPosts, setBlogPosts] = useState<{ _id: string; title: string; content: string; createdAt: string }[]>([]); // Define the type for blogPosts
+  const [blogPosts, setBlogPosts] = useState<{ _id: string; title: string; content: string; createdAt: string }[]>([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("https://blog-be-mqm1.onrender.com/blog/public");
+        //https://blog-be-mqm1.onrender.com
+        const response = await fetch("http://localhost:4000/blog/public");
         const data = await response.json();
         console.log(data); // Log the data to check its structure
         setBlogPosts(data);
@@ -20,18 +22,12 @@ export default function BlogListing() {
         console.error("Error fetching blogs:", error);
       }
     };
-
     fetchBlogs();
   }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold flex items-center">
-          <span className="text-3xl mr-2 text-blue-600">*</span> NewBlockchain
-        </Link>
-        <Button className="bg-blue-600 hover:bg-blue-700 rounded-full px-6">Get Started →</Button>
-      </header>
+      <Header/>
 
       <main className="container mx-auto px-4 py-12">
         <section className="text-center mb-16">
@@ -66,12 +62,8 @@ export default function BlogListing() {
                   <span className="text-gray-500">{new Date(post.createdAt).toLocaleDateString()}</span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                <p className="text-gray-400 mb-4">{post.content}</p>
-                <Link href={`/blog/${post._id}`}>
-                  <Button variant="link" className="p-0 h-auto font-normal text-blue-600 hover:text-blue-500">
-                    Read More →
-                  </Button>
-                </Link>
+                <p>{post.content.substring(0, 150)}{post.content.length > 150 ? '...' : ''}</p> {/* Show first 150 characters */}
+                <Link href={`/blog/${post._id}`} className="text-blue-500 hover:underline">Read More</Link> {/* Read More button */}
               </CardContent>
             </Card>
           ))}
