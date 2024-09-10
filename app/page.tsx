@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { UserRoundPen, Lock, BookOpen } from 'lucide-react'
 import Header from '@/components/ui/navbar'
