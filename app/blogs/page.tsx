@@ -45,18 +45,6 @@ export default function BlogListing() {
             LATEST <span className="text-blue-600">INSIGHTS</span>
           </h1>
         </section>
-        
-        <div className="mb-12 flex">
-          <input 
-            type="text" 
-            placeholder="Search blog posts..." 
-            className="flex-grow p-3 bg-gray-900 text-white rounded-l-full border-2 border-r-0 border-gray-800 focus:outline-none focus:border-blue-600"
-          />
-          <Button className="bg-blue-600 hover:bg-blue-700 rounded-l-none rounded-r-full px-6">
-            <Search className="mr-2" />
-            Search
-          </Button>
-        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
