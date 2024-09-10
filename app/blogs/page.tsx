@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Lock, BookOpen, Search } from 'lucide-react'
+import { Clock, Search } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export default function BlogListing() {
