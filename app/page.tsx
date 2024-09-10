@@ -68,9 +68,9 @@ export default function LandingPage() {
           </Card>
         </section>
         <section className="text-center pt-10">
-          <Button className="bg-blue-600 hover:bg-blue-700 rounded-full px-6 py-3 text-lg ">
+          <Link href='/blogs' className="bg-blue-600 hover:bg-blue-700 rounded-full px-6 py-3 text-lg ">
             Discover Our Blogs
-          </Button>
+          </Link>
         </section>
       </main>
     </div>

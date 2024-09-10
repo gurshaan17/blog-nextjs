@@ -24,7 +24,6 @@ export default function BlogListing() {
         
         const response = await fetch(`https://blog-be-mqm1.onrender.com/blog/public`);
         const data = await response.json();
-        console.log(data); // Log the data to check its structure
         setBlogPosts(data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
