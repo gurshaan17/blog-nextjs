@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Lock, BookOpen } from 'lucide-react'
+import { UserRoundPen, Lock, BookOpen } from 'lucide-react'
 import Header from '@/components/ui/navbar'
 
 export default function LandingPage() {
@@ -23,15 +23,15 @@ export default function LandingPage() {
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
                 <div className="bg-blue-600 p-3 rounded-full">
-                  <Clock className="h-6 w-6" />
+                  <UserRoundPen className="h-6 w-6" />
                 </div>
                 <span className="text-gray-500">3 JANUARY 2023</span>
               </div>
               <h3 className="text-xl font-bold mb-2 text-white">NEW UPDATE SOON</h3>
               <p className="text-gray-400 mb-4">Explore the latest changes in our blockchain system! Stay informed about the latest developments...</p>
-              <Button variant="link" className="p-0 h-auto font-normal text-blue-600 hover:text-blue-500">
+              <Link href='/blog/66e06ac59bb2eae59fae2824' className="p-0 h-auto font-normal text-blue-600 hover:text-blue-500">
                 DISCOVER MORE →
-              </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -45,9 +45,9 @@ export default function LandingPage() {
               </div>
               <h3 className="text-xl font-bold mb-2 text-white">PROTOCOLS AND SECURITY</h3>
               <p className="text-gray-400 mb-4">Security is paramount in the blockchain world, and new protocols aim to strengthen this foundation...</p>
-              <Button variant="link" className="p-0 h-auto font-normal text-blue-600 hover:text-blue-500">
+              <Link href='/blog/66e06b199bb2eae59fae2829' className="p-0 h-auto font-normal text-blue-600 hover:text-blue-500">
                 DISCOVER MORE →
-              </Button>
+              </Link>
             </CardContent>
           </Card>
 

@@ -20,14 +20,14 @@ interface Blog {
 
 const BlogPost: React.FC<BlogPostProps> = ({ params }) => {
   const { id } = params;
-  const [blog, setBlog] = useState<Blog | null>(null); // Store single blog object
-  const [loading, setLoading] = useState<boolean>(true); // Loading state
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); 
 
   useEffect(() => {
     if (id) {
       const fetchBlog = async () => {
         try {
-          const response = await fetch(`http://localhost:4000/blog/${id}`);
+          const response = await fetch(`https://blog-be-mqm1.onrender.com/blog/${id}`);
           if (!response.ok) {
             throw new Error(`Error fetching blog: ${response.statusText}`);
           }
@@ -50,7 +50,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ params }) => {
     <div className="min-h-screen bg-black text-white">
       <Header/>
       <main className="container mx-auto px-4 py-12">
-        <Link href="/blog" className="flex items-center text-blue-600 hover:text-blue-500 mb-8">
+        <Link href="/blogs" className="flex items-center text-blue-600 hover:text-blue-500 mb-8">
           <ArrowLeft className="mr-2" />
           Back to Blog
         </Link>
@@ -62,7 +62,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ params }) => {
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{blog.title}</h1>
           <div className="flex items-center text-gray-500 mb-8">
             <Clock className="mr-2" />
-            <span>{new Date(blog.createdAt).toLocaleDateString()}</span> {/* Format date */}
+            <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
           </div>
           <div className="prose prose-invert max-w-none">
             <p>{blog.content}</p>

@@ -3,18 +3,26 @@
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Clock, Search } from 'lucide-react'
+import { Search, UserRoundPen } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import Header from '@/components/ui/navbar'
 
+interface Blog {
+  _id: string;
+  title: string;
+  content: string;
+  createdAt: string;
+}
+
+
 export default function BlogListing() {
-  const [blogPosts, setBlogPosts] = useState<{ _id: string; title: string; content: string; createdAt: string }[]>([]);
+  const [blogPosts, setBlogPosts] = useState<Blog[]>([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        //https://blog-be-mqm1.onrender.com
-        const response = await fetch("http://localhost:4000/blog/public");
+        
+        const response = await fetch(`https://blog-be-mqm1.onrender.com/blog/public`);
         const data = await response.json();
         console.log(data); // Log the data to check its structure
         setBlogPosts(data);
@@ -54,17 +62,22 @@ export default function BlogListing() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <Card key={post._id} className="bg-gray-900 border-gray-800 overflow-hidden">
-              <CardContent className="p-6">
+              <Link href={`/blog/${post._id}`}>
+              <CardContent className="p-6 hover: cursor-pointer">
                 <div className="flex items-center justify-between mb-4">
                   <div className="bg-blue-600 p-3 rounded-full">
-                    <Clock className="h-6 w-6" /> {/* Use a default icon or customize as needed */}
+                    <UserRoundPen className="h-6 w-6" />
                   </div>
-                  <span className="text-gray-500">{new Date(post.createdAt).toLocaleDateString()}</span>
+                  <span className="text-gray-500">
+                    {new Date(post.createdAt).toLocaleDateString()} 
+                    <span className="text-blue-600 ml-2">• 2 minute read</span>
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2">{post.title}</h3>
-                <p>{post.content.substring(0, 150)}{post.content.length > 150 ? '...' : ''}</p> {/* Show first 150 characters */}
-                <Link href={`/blog/${post._id}`} className="text-blue-500 hover:underline">Read More</Link> {/* Read More button */}
+                <p>{post.content.substring(0, 150)}{post.content.length > 150 ? '...' : ''}</p> 
+                <Link href={`/blog/${post._id}`} className="text-blue-500 hover:underline">Read More</Link>
               </CardContent>
+              </Link>
             </Card>
           ))}
         </div>
