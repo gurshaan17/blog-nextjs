@@ -1,7 +1,6 @@
 "use client"
 
 import Link from 'next/link'
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Search, UserRoundPen } from 'lucide-react'
 import { useEffect, useState } from 'react'
